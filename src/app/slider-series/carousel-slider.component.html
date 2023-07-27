@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12"><br>
+            <h3 class=""> Carousel Assignmant 2 </h3>
+            <br>
+        </div>
+        <div class="carousel-container col-12">
+            <ngb-carousel class="carousel">
+                <ng-template ngbSlide *ngFor="let image of images">
+                    <div class="wrapper">
+                        <img [src]="image.imgUrl" alt="Image path is Unknown" />
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>{{ image.imgCapt }}</h3>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <div>
+        <h4 class="">Added Slides </h4>
+        <ul *ngFor="let image of images" class="custom-ul">
+            <li>Slide - {{image.id}} <button *ngIf="(this.images.length)>1" (click)="deletecarousal(image.id)" type="button" class="btn"><i
+                        class="material-icons ">delete</i></button> </li>
+        </ul>
+    </div>
+
+    <form [formGroup]="varouselForm"  (ngSubmit)="AddSlide()">
+        <h4 class="">Add New Slide </h4>
+        <input type="hidden" formControlName="id">
+        <div class="row mt-3">
+            <div class="col-md-12 ">
+                <label> Image URL:</label>
+                <input type="text" class="form-control" formControlName="imgUrl" placeholder="https://picsum.photos/id/{imgNo}/800/400 ##imgNo i.e. 33,55,4,6 ">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <label> Image Cption:</label>
+                <input type="text" class="form-control" placeholder="Enter Caption" formControlName="imgCapt">
+            </div>
+        </div>
+        <div class="row mt-3">  
+            <div class="col-md-5">         
+                <button [disabled]="varouselForm.invalid" class="btn btnsubmit">Add Slide</button>
+            </div>
+        </div>
+    </form>
+
+</div><br>
